@@ -9,22 +9,23 @@ const tabData = [
   {
     id: 0,
     title: "Movies",
-    url: "/movie/top_rated",
+    url: "movie/top_rated",
   },
   {
     id: 1,
     title: "On TV",
-    url: "/tv/top_rated",
+    url: "tv/top_rated",
   },
 ];
 
 const FreeToWatch = () => {
   const [dataList, setDataList] = useState([]);
+  const [tab, setTab] = useState(tabData[0].url);
 
   const getData = async () => {
     await axios
       .get(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}`
+        `https://api.themoviedb.org/3/${tab}?api_key=${process.env.REACT_APP_API_KEY}`
       )
       .then((res) => {
         setDataList(res.data.results);
@@ -34,7 +35,7 @@ const FreeToWatch = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [tab]);
 
   return (
     <>
@@ -45,7 +46,7 @@ const FreeToWatch = () => {
           </Typography>
           <Tabs
             data={tabData}
-            setDataList={setDataList}
+            setTab={setTab}
             bgColor={"bg-black"}
             textColor={"text-white"}
           />
@@ -55,10 +56,11 @@ const FreeToWatch = () => {
           sx={{
             display: "flex",
             alignItems: "center",
-            width: { xs: "21.5rem",sm:"60rem" },
+            width: { xs: "21.5rem", sm: "60rem" },
             height: { xs: "auto" },
             overflow: "auto",
             paddingLeft: "0.2rem",
+            paddingBottom:"1.5rem"
           }}
         >
           <CardsList dataList={dataList} />

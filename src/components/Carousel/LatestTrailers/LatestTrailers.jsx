@@ -9,37 +9,38 @@ const tabData = [
   {
     id: 0,
     title: "Popular",
-    url: "/movie/now_playing",
+    url: "movie/now_playing",
   },
   {
     id: 1,
     title: "Streaming",
-    url: "/movie/popular",
+    url: "movie/upcoming",
   },
   {
     id: 2,
     title: "On TV",
-    url: "/movie/top_rated",
+    url: "movie/top_rated",
   },
   {
     id: 3,
     title: "For Rent",
-    url: "/movie/upcoming",
+    url: "movie/popular",
   },
   {
     id: 4,
     title: "In Theaters",
-    url: "popular",
+    url: "trending/movie/week",
   },
 ];
 
 const LatestTrailers = () => {
   const [dataList, setDataList] = useState([]);
+  const [tab, setTab] = useState(tabData[0].url);
 
   const getData = async () => {
     await axios
       .get(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}`
+        `https://api.themoviedb.org/3/${tab}?api_key=${process.env.REACT_APP_API_KEY}`
       )
       .then((res) => {
         setDataList(res.data.results);
@@ -49,7 +50,7 @@ const LatestTrailers = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [tab]);
   return (
     <>
       <Box
@@ -68,9 +69,9 @@ const LatestTrailers = () => {
 
           <Tabs
             data={tabData}
+            setTab={setTab}
             bgColor={"bg-gradient-to-r from-blue-300 to-green-600"}
             textColor={"text-white"}
-            setDataList={setDataList}
           />
         </Stack>
         <Box
@@ -78,7 +79,7 @@ const LatestTrailers = () => {
           sx={{
             display: "flex",
             alignItems: "center",
-            width: { xs: "21.5rem",sm:"60rem" },
+            width: { xs: "21.5rem", sm: "60rem" },
             height: { xs: "auto" },
             overflow: "auto",
           }}

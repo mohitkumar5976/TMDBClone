@@ -20,11 +20,12 @@ const tabData = [
 
 const TrendingCarousel = () => {
   const [dataList, setDataList] = useState([]);
+  const [tab, setTab] = useState(tabData[0].url);
 
   const getData = async () => {
     await axios
       .get(
-        `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_API_KEY}`
+        `https://api.themoviedb.org/3/${tab}?api_key=${process.env.REACT_APP_API_KEY}`
       )
       .then((res) => {
         setDataList(res.data.results);
@@ -34,7 +35,7 @@ const TrendingCarousel = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [tab]);
 
   return (
     <>
@@ -48,9 +49,9 @@ const TrendingCarousel = () => {
           </Typography>
           <Tabs
             data={tabData}
+            setTab={setTab}
             bgColor={"bg-black"}
             textColor={"text-white"}
-            setDataList={setDataList}
           />
         </Stack>
         <Box
@@ -64,6 +65,7 @@ const TrendingCarousel = () => {
             width: { xs: "21.5rem", sm: "60rem" },
             height: { xs: "auto" },
             overflow: "auto",
+            paddingBottom: "1.5rem",
           }}
         >
           <CardsList dataList={dataList} />

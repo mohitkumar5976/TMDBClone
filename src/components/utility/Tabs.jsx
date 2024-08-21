@@ -1,20 +1,12 @@
 import { Box, Typography } from "@mui/material";
-import axios from "axios";
 import React, { useState } from "react";
 
-export default function Tabs({ data, bgColor, textColor, setDataList }) {
+export default function Tabs({ data, setTab, bgColor, textColor }) {
   const [index, setIndex] = useState(0);
 
   const getData = async (id, url) => {
     setIndex(id);
-    await axios
-      .get(
-        `https://api.themoviedb.org/3/${url}?api_key=${process.env.REACT_API_KEY}`
-      )
-      .then((res) => {
-        setDataList(res.data.results);
-      })
-      .catch((err) => console.log(err.message));
+    setTab(url);
   };
 
   return (

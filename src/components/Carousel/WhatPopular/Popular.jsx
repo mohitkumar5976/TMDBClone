@@ -9,32 +9,33 @@ const tabData = [
   {
     id: 0,
     title: "Streaming",
-    url: "/movie/now_playing",
+    url: "movie/now_playing",
   },
   {
     id: 1,
     title: "On TV",
-    url: "/movie/top_rated",
+    url: "movie/top_rated",
   },
   {
     id: 2,
     title: "For Rent",
-    url: "/movie/upcoming",
+    url: "movie/upcoming",
   },
   {
     id: 3,
     title: "In Theaters",
-    url: "/movie/popular",
+    url: "movie/popular",
   },
 ];
 
 const Popular = () => {
   const [dataList, setDataList] = useState([]);
+  const [tab, setTab] = useState(tabData[0].url);
 
   const getData = async () => {
     await axios
       .get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}`
+        `https://api.themoviedb.org/3/${tab}?api_key=${process.env.REACT_APP_API_KEY}`
       )
       .then((res) => {
         setDataList(res.data.results);
@@ -44,7 +45,7 @@ const Popular = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [tab]);
 
   return (
     <>
@@ -55,7 +56,7 @@ const Popular = () => {
           </Typography>
           <Tabs
             data={tabData}
-            setDataList={setDataList}
+            setTab={setTab}
             bgColor={"bg-black"}
             textColor={"text-white"}
           />
@@ -65,10 +66,11 @@ const Popular = () => {
           sx={{
             display: "flex",
             alignItems: "center",
-            width: { xs: "21.5rem",sm:"60rem" },
+            width: { xs: "21.5rem", sm: "60rem" },
             height: { xs: "auto" },
             overflow: "auto",
-            paddingLeft:"0.2rem"
+            paddingLeft: "0.2rem",
+            paddingBottom: "1.5rem",
           }}
         >
           <CardsList dataList={dataList} />
