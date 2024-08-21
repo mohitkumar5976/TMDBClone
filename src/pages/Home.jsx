@@ -14,21 +14,16 @@ function Home() {
     <>
       <Banner />
 
-      <TrendingCarousel />
-      <LatestTrailers />
-      <Popular />
-      <FreeToWatch />
-      {/* <SearchContainer search={search} /> */}
-      {/* {search && search.length !== 0 ? (
+      {search && search.length !== 0 ? (
         <SearchContainer search={search} />
       ) : (
         <>
           <TrendingCarousel />
           <LatestTrailers />
           <Popular />
-         
+          <FreeToWatch />
         </>
-      )} */}
+      )}
     </>
   );
 }
