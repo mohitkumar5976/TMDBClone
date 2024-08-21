@@ -1,5 +1,5 @@
-import React,{useEffect, useState} from "react";
-import { Box, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Stack, Typography } from "@mui/material";
 import "../../../index.css";
 import Tabs from "../../utility/Tabs";
 import CardsList from "../../utility/CardsList";
@@ -18,7 +18,7 @@ const tabData = [
   },
 ];
 
-function FreeToWatch() {
+const FreeToWatch = () => {
   const [dataList, setDataList] = useState([]);
 
   const getData = async () => {
@@ -35,11 +35,11 @@ function FreeToWatch() {
   useEffect(() => {
     getData();
   }, []);
- 
+
   return (
     <>
       <Box className=" pt-7">
-        <Box className="flex gap-4 py-2 pl-12">
+        <Stack direction={{ xs: "column", sx: "row" }} padding={{ xs: 1 }}>
           <Typography variant="h6" fontWeight={"700"}>
             Free To Watch
           </Typography>
@@ -49,13 +49,23 @@ function FreeToWatch() {
             bgColor={"bg-black"}
             textColor={"text-white"}
           />
-        </Box>
-        <div id="carousel" className="overflow-auto pt-3 pb-8">
+        </Stack>
+        <Box
+          id="carousel"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            width: { xs: "21.5rem",sm:"60rem" },
+            height: { xs: "auto" },
+            overflow: "auto",
+            paddingLeft: "0.2rem",
+          }}
+        >
           <CardsList dataList={dataList} />
-        </div>
+        </Box>
       </Box>
     </>
   );
-}
+};
 
 export default FreeToWatch;

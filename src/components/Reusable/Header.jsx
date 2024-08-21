@@ -78,7 +78,7 @@ const Header = () => {
               </Paper>
             }
           >
-            <Typography fontSize={14} fontWeight={"bold"}>
+            <Typography fontSize={18} fontWeight={"bold"}>
               Movies
             </Typography>
           </Tooltip>
@@ -112,7 +112,7 @@ const Header = () => {
               </Paper>
             }
           >
-            <Typography fontSize={14} fontWeight={"bold"}>
+            <Typography fontSize={18} fontWeight={"bold"}>
               TV Shows
             </Typography>
           </Tooltip>
@@ -137,7 +137,7 @@ const Header = () => {
               </Paper>
             }
           >
-            <Typography fontSize={14} fontWeight={"bold"}>
+            <Typography fontSize={18} fontWeight={"bold"}>
               People
             </Typography>
           </Tooltip>
@@ -171,7 +171,7 @@ const Header = () => {
               </Paper>
             }
           >
-            <Typography fontSize={14} fontWeight={"bold"}>
+            <Typography fontSize={18} fontWeight={"bold"}>
               More
             </Typography>
           </Tooltip>

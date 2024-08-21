@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 
 const ApplicationWrapper = () => {
   return (
-    <Grid container direction={"column"}>
+    <Grid container direction={"column"} sx={{ width: "100%" }}>
       <Grid item sx={{ height: "65px" }}>
         <Header />
       </Grid>

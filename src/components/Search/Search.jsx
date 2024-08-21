@@ -14,47 +14,31 @@ export default function Search() {
       )
       .then((res) => {
         console.log(res.data.results);
-        setSearch(res.data.results)
+        setSearch(res.data.results);
       })
       .catch((err) => {
         console.log(err.message);
       });
   };
 
-
-
   return (
     <>
       <Stack
         direction={"row"}
-        className="rounded-3xl"
-        sx={{
-          backgroundColor: "white",
-          width: "98%",
-          height: "45px",
-        }}
+        className="bg-white rounded-3xl"
+        sx={{ height: { xs: "2.8rem" } }}
       >
         <input
           type="search"
           value={state}
           onChange={(e) => setState(e.target.value)}
           placeholder="Search for a movie,tv,show,person....."
-          style={{
-            width: "100%",
-            border: "none",
-            fontSize: "18px",
-            paddingLeft: "10px",
-            marginLeft: "20px",
-            outline: "none",
-          }}
+          className="w-full h-full rounded-l-3xl pl-5 outline-none"
         />
 
         <Box
-          className="w-28 cursor-pointer flex justify-center items-center bg-gradient-to-r from-green-400 to-blue-400 h-full"
-          sx={{
-            borderRadius: "20px",
-          }}
-          onClick={()=>handleSearch()}
+          className="w-28 cursor-pointer rounded-r-3xl flex justify-center items-center bg-gradient-to-r from-green-400 to-blue-400 h-full"
+          onClick={() => handleSearch()}
         >
           <Typography fontSize={15} fontWeight={"bold"} color={"white"}>
             Search

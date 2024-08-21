@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import "../../../index.css";
 import axios from "axios";
 import Tabs from "../../utility/Tabs";
-import CardsList from '../../utility/CardsList'
+import CardsList from "../../utility/CardsList";
 
 const tabData = [
   {
@@ -28,7 +28,7 @@ const tabData = [
   },
 ];
 
-function Popular() {
+const Popular = () => {
   const [dataList, setDataList] = useState([]);
 
   const getData = async () => {
@@ -49,18 +49,33 @@ function Popular() {
   return (
     <>
       <Box className=" pt-8">
-        <Box className="flex gap-4 py-2 pl-12">
+        <Stack direction={{ xs: "column", sx: "row" }} padding={{ xs: 1 }}>
           <Typography variant="h6" fontWeight={"700"}>
             What's Popular
           </Typography>
-          <Tabs data={tabData} setDataList={setDataList} bgColor={"bg-black"} textColor={"text-white"}/>
+          <Tabs
+            data={tabData}
+            setDataList={setDataList}
+            bgColor={"bg-black"}
+            textColor={"text-white"}
+          />
+        </Stack>
+        <Box
+          id="carousel"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            width: { xs: "21.5rem",sm:"60rem" },
+            height: { xs: "auto" },
+            overflow: "auto",
+            paddingLeft:"0.2rem"
+          }}
+        >
+          <CardsList dataList={dataList} />
         </Box>
-        <div id="carousel" className="overflow-auto pt-3 pb-8">
-        <CardsList dataList={dataList} />
-        </div>
       </Box>
     </>
   );
-}
+};
 
 export default Popular;

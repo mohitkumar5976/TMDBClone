@@ -19,7 +19,7 @@ export default function Tabs({ data, bgColor, textColor, setDataList }) {
 
   return (
     <>
-      <Box className="flex h-fit items-center border border-1 rounded-2xl">
+      <Box className="flex flex-wrap p-1 h-fit w-fit items-center border border-1 rounded-2xl">
         {data && data.length !== 0
           ? data.map((item) => {
               return (

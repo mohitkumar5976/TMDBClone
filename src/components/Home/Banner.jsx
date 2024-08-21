@@ -6,7 +6,7 @@ function Banner() {
   return (
     <Box
       sx={{
-        height: { xs: "20rem", sm: "32rem", xl: "44rem" },
+        height: { xs: "20rem", sm: "35rem", lg: "40rem" },
         display: "flex",
         alignItems: "end",
         backgroundSize: "cover",
@@ -19,7 +19,7 @@ function Banner() {
         sx={{
           paddingLeft: { xs: 1, sm: 3 },
           paddingRight: { xs: 1, sm: 3 },
-          paddingBottom: { xs: 3, sm: 5 },
+          paddingBottom: { xs: 3, sm: 8 },
           width: "100%",
         }}
       >

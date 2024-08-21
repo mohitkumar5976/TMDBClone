@@ -1,6 +1,7 @@
 import React from "react";
-import Main from "../details/MoviePage/Main";
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import MovieCard from "../Cards/MovieCard";
 
 export default function SearchContainer({ search }) {
   return (
@@ -12,7 +13,25 @@ export default function SearchContainer({ search }) {
         >
           Search Results ({search.length})
         </Typography>
-        <Main dataList={search} />
+        <Grid container columns={{ xs: 2, sm: 4 }}>
+          {search.map((movie) => (
+            <Grid item key={movie.id} xs={1} sm={1} className="p-1">
+              <Link
+                to={`/${movie.title ? "movie" : "tv"}/${movie.id}/${
+                  movie.title ? movie.title : movie.name
+                }`}
+              >
+                <MovieCard
+                  id={movie.id}
+                  title={movie.title ? movie.title : movie.name}
+                  voteAverage={movie.vote_average}
+                  posterPath={movie.poster_path}
+                  releaseDate={movie.release_date}
+                />
+              </Link>
+            </Grid>
+          ))}
+        </Grid>
       </Box>
     </>
   );
