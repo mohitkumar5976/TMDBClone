@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "./theme";
 import "./index.css";
 import ContextProvider from "./Context";
@@ -10,6 +10,7 @@ import ContextProvider from "./Context";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThemeProvider theme={theme}>
+    <CssBaseline />
     <ContextProvider>
       <App />
     </ContextProvider>

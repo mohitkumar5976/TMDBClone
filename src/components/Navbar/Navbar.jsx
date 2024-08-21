@@ -16,6 +16,7 @@ import AddIcon from "@mui/icons-material/Add";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link } from "react-router-dom";
 import { Context } from "../../Context";
+import MenuIcon from "@mui/icons-material/Menu";
 
 function Navbar() {
   const { emptySearch } = useContext(Context);
