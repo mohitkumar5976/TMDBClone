@@ -26,13 +26,13 @@ export default function Search() {
       <Stack
         direction={"row"}
         className="bg-white rounded-3xl"
-        sx={{ height: { xs: "2.8rem" } }}
+        sx={{ height: { xs: "2.5rem" } }}
       >
         <input
           type="search"
           value={state}
           onChange={(e) => setState(e.target.value)}
-          placeholder="Search for a movie,tv,show,person....."
+          placeholder="Search here..."
           className="w-full h-full rounded-l-3xl pl-5 outline-none"
         />
 

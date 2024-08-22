@@ -40,7 +40,7 @@ const TrendingCarousel = () => {
 
   return (
     <>
-      <Box className="flex flex-col gap-x-2" sx={{ height: "25rem" }}>
+      <Box className="flex flex-col gap-x-2 " sx={{ height: "25rem" }}>
         <Stack direction={{ xs: "column", sx: "row" }} padding={{ xs: 1 }}>
           <Typography variant="h6" fontWeight={"700"}>
             Trending

@@ -19,6 +19,7 @@ const ResponsiveBox = ({ dataList }) => {
         alignItems: "flex-start",
         gap: 1,
         paddingRight: 1,
+        paddingLeft:1,
         margin: 0,
         listStyle: "none",
         overflowX: "auto", // Enables horizontal scrolling

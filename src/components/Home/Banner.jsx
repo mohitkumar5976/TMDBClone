@@ -34,9 +34,8 @@ const imageLinks = [
 const Banner = () => {
   return (
     <Box
-      className="bg-gray-300"
       sx={{
-        height: { xs: "20rem", sm: "35rem", lg: "40rem" },
+        height: { sm: "35rem", lg: "40rem" },
         overflow: "hidden", // Ensures no extra space below the image
         position: "relative",
       }}
@@ -63,27 +62,27 @@ const Banner = () => {
         ))}
       </Carousel>
       <Stack
-        spacing={{ xs: 3, sm: 5 }}
+        spacing={{ xs: 1, sm: 5 }}
         sx={{
           paddingLeft: { xs: 1, sm: 3 },
           paddingRight: { xs: 1, sm: 3 },
           width: "100%",
           position: "absolute",
-          bottom: { xs: "3.5rem", sm: "4rem" },
+          bottom: { xs: "1rem", sm: "4rem" },
           zIndex: 1,
         }}
       >
         <Stack direction={"column"}>
           <Typography
             color="white"
-            fontSize={{ xs: 50, sm: 70 }}
+            fontSize={{ xs: 30, sm: 70 }}
             fontWeight={"bold"}
           >
             Welcome.
           </Typography>
           <Typography
             color="white"
-            fontSize={{ xs: 15, sm: 23 }}
+            fontSize={{ xs: 13, sm: 23 }}
             fontWeight={"bold"}
           >
             Millions of movies, TV shows and people to discover. Explore now.
