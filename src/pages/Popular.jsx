@@ -1,19 +1,15 @@
-import React,{useState} from "react";
 import MoviePage from "../components/details/MoviePage/MoviePage";
 import { Box } from "@mui/material";
 import Heading from "../components/details/MoviePage/Heading";
-import CarouselDataFetching from "../components/utility/CarouselDataFetching";
+import useFetchData from "../hooks/useFetchData";
 
 function Popular() {
-  const [dataList,setDataList ] = useState([])
-
-  CarouselDataFetching("movie/popular",setDataList);
+  const dataList = useFetchData("movie/popular");
 
   return (
-    <Box className=" pt-20 flex flex-col ">
-      <Box className="pl-12 pt-2 pb-5">
-        <Heading heading="Popular" />
-      </Box>
+    <Box className="flex flex-col w-full">
+      <Heading heading="Popular" />
+
       <MoviePage dataList={dataList} />
     </Box>
   );

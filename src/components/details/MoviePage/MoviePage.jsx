@@ -1,15 +1,23 @@
-import { Box } from "@mui/material";
+import { Grid } from "@mui/material";
 import React from "react";
 import Main from "./Main";
 import Sidebar from "./Sidebar";
 
-function MoviePage({dataList}) {
+function MoviePage({ dataList }) {
   return (
     <>
-      <Box className="flex gap-2 px-5">
-        <Sidebar/>
-        <Main dataList={dataList}/>
-      </Box>
+      <Grid
+        container
+        direction={{ xs: "column", sm: "row" }}
+        justifyItems={{ xs: "center", sm: "none" }}
+      >
+        <Grid item xs={12} sm={4}>
+          <Sidebar />
+        </Grid>
+        <Grid item xs={12} sm={8}>
+          <Main dataList={dataList} />
+        </Grid>
+      </Grid>
     </>
   );
 }

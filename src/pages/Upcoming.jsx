@@ -1,19 +1,15 @@
-import React,{useState} from "react";
 import MoviePage from "../components/details/MoviePage/MoviePage";
 import { Box } from "@mui/material";
 import Heading from "../components/details/MoviePage/Heading";
-import CarouselDataFetching from "../components/utility/CarouselDataFetching";
+import useFetchData from "../hooks/useFetchData";
 
 function Upcoming() {
-  const [dataList,setDataList ] = useState([])
-
-  CarouselDataFetching("movie/upcoming",setDataList);
+  const dataList = useFetchData("movie/upcoming");
 
   return (
-    <Box className=" pt-20 flex flex-col ">
-      <Box className="pl-12 pt-2 pb-5">
-        <Heading heading="Up Coming" />
-      </Box>
+    <Box className="flex flex-col w-full">
+      <Heading heading="Popular" />
+
       <MoviePage dataList={dataList} />
     </Box>
   );

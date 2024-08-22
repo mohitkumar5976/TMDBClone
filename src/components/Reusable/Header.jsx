@@ -18,6 +18,13 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
+import BasicMenu from "./BasicMenu";
+import MenuListFC from "../utility/MenuListFC";
+import {
+  moviesMenuList,
+  peopleMenuList,
+  tvMenuList,
+} from "../../utils/NavigationLinks";
 
 const Header = () => {
   return (
@@ -59,27 +66,10 @@ const Header = () => {
             sx={{
               cursor: "pointer",
             }}
-            title={
-              <Paper>
-                <MenuList>
-                  <MenuItem component={Link} to="/movie/popular">
-                    Popular
-                  </MenuItem>
-                  <MenuItem component={Link} to="/movie/now-playing">
-                    Now Playing
-                  </MenuItem>
-                  <MenuItem component={Link} to="/movie/upcoming">
-                    Upcoming
-                  </MenuItem>
-                  <MenuItem component={Link} to="/movie/top-rated">
-                    Top Rated
-                  </MenuItem>
-                </MenuList>
-              </Paper>
-            }
+            title={<MenuListFC menuList={moviesMenuList} />}
           >
             <Typography fontSize={18} fontWeight={"bold"}>
-              Movies
+              <BasicMenu title={"Movies"} data={moviesMenuList} />
             </Typography>
           </Tooltip>
           <Tooltip
@@ -93,27 +83,10 @@ const Header = () => {
                 },
               },
             }}
-            title={
-              <Paper>
-                <MenuList>
-                  <MenuItem component={Link} to="/tv/popular">
-                    Popular
-                  </MenuItem>
-                  <MenuItem component={Link} to="/tv/airing-today">
-                    Airing Today
-                  </MenuItem>
-                  <MenuItem component={Link} to="/tv/upcoming">
-                    On TV
-                  </MenuItem>
-                  <MenuItem component={Link} to="/tv/top-rated">
-                    Top Rated
-                  </MenuItem>
-                </MenuList>
-              </Paper>
-            }
+            title={<MenuListFC menuList={tvMenuList} />}
           >
             <Typography fontSize={18} fontWeight={"bold"}>
-              TV Shows
+              <BasicMenu title={"TV Shows"} data={tvMenuList} />
             </Typography>
           </Tooltip>
           <Tooltip
@@ -127,18 +100,10 @@ const Header = () => {
                 },
               },
             }}
-            title={
-              <Paper>
-                <MenuList>
-                  <MenuItem component={Link} to="/people">
-                    People
-                  </MenuItem>
-                </MenuList>
-              </Paper>
-            }
+            title={<MenuListFC menuList={peopleMenuList} />}
           >
             <Typography fontSize={18} fontWeight={"bold"}>
-              People
+              <BasicMenu title={"People"} data={peopleMenuList} />
             </Typography>
           </Tooltip>
           <Tooltip
