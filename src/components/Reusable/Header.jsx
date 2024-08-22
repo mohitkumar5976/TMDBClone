@@ -33,7 +33,15 @@ const Header = () => {
       sx={{ backgroundColor: "#032541", height: "100%" }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
-        <MobileSidebar />
+        <Stack direction={"row"} alignItems={"center"} display={{ sm: "none" }}>
+          <MobileSidebar />
+          <Link
+            className="text-base pl-0.5 text-decoration-none text-white"
+            to={"/"}
+          >
+            TMDB
+          </Link>
+        </Stack>
         <Stack
           direction="row"
           display={{ xs: "none", sm: "flex" }}

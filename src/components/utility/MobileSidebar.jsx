@@ -7,7 +7,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import { moviesMenuList } from "../../utils/NavigationLinks";
-import { IconButton } from "@mui/material";
+import { IconButton, Stack } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import { Link } from "react-router-dom";
 
 export default function MobileSidebar() {
   const [open, setOpen] = React.useState(false);
@@ -18,6 +20,15 @@ export default function MobileSidebar() {
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton component="a" href="/">
+            <Stack direction={"row"} alignItems={"center"} spacing={0.5}>
+              <HomeIcon /> <ListItemText primary={"Home"} />
+            </Stack>
+          </ListItemButton>
+        </ListItem>
+      </List>
       <List>
         {moviesMenuList.map((text, index) => (
           <ListItem key={index} disablePadding>
