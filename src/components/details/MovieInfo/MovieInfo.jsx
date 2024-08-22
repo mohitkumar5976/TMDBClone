@@ -1,7 +1,8 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   CircularProgress,
+  Grid,
   Stack,
   Tooltip,
   Typography,
@@ -16,11 +17,12 @@ import axios from "axios";
 import MovieInfoBody from "./MovieInfoBody";
 import MovieInfoSidebar from "./MovieInfoSidebar";
 import ImageComponent from "../../utility/ImageComponent";
-
+import TrendingCarousel from "../../Carousel/TrendingCarousel/TrendingCarousel";
+import FreeToWatch from "../../Carousel/FreeToWatch/FreeToWatch";
 
 function MovieInfo() {
   const { id, type } = useParams();
-  const [ data, setData ] = useState([])
+  const [data, setData] = useState([]);
 
   const getMovie = async () => {
     await axios
@@ -28,7 +30,7 @@ function MovieInfo() {
         `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}`
       )
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         setData([res.data]);
       })
       .catch((err) => console.log(err.message));
@@ -40,135 +42,179 @@ function MovieInfo() {
 
   return (
     <>
-      <Box
-        className="px-3 pt-[5rem] pb-4 bg-gray-700"
+      <Grid
+        container
+        direction="column"
+        sx={{
+          minHeight: "100vh",
+        }}
       >
-        { data && data.length!=0? data.map((movie) => {
-          return (
-            <Box className="flex gap-3 px-4">
-              <Box className="w-1/3">
-                <ImageComponent
-                  rounded={"rounded-3xl"}
-                  posterPath={movie.poster_path}
-                />
-              </Box>
-              <Box className="w-full flex flex-col  justify-center">
-                <Box className="pl-3 flex flex-col gap-6
-                 text-white">
-                  <Box className="flex flex-col gap-2">
-
-                  <Typography variant="h4" fontWeight={"bold"}>
-                    {movie.title}
-                    <span className="text-gray-200">(2013)</span>
-                  </Typography>
-
-                  <Box className="flex gap-2 pl-1 ">
-                    {movie.genres.map((data) => {
-                      return <Typography>{data.name}</Typography>;
-                    })}
-                  </Box>
-                  </Box>
-
-                  <Stack direction="row" alignItems={"center"} spacing={2}>
-                    <div className="flex items-center gap-1">
-                      <div className="flex w-16 h-16 relative bg-black rounded-full">
-                        <CircularProgress
-                          variant="determinate"
-                          value={Math.floor((movie.vote_average * 100) / 10)}
-                          color="success"
-                          size={"4rem"}
-                          sx={{
-                            position: "absolute",
-                            top: "50%",
-                            left: "50%",
-                            translate: "-50% -50%",
-                          }}
+        <Grid
+          item
+          className=" bg-gray-700 flex items-center p-2"
+          sx={{
+            height: { xs: "auto", sm: "40rem" },
+          }}
+        >
+          {data && data.length != 0
+            ? data.map((movie) => {
+                return (
+                  <Stack direction={{ xs: "column", sm: "row" }}>
+                    <Box className="flex justify-center w-full">
+                      <Box
+                        paddingY={1}
+                        sx={{
+                          width: { xs: "20rem", sm: "22rem" },
+                        }}
+                      >
+                        <ImageComponent
+                          rounded={"rounded-3xl"}
+                          posterPath={movie.poster_path}
                         />
-                        <Typography
-                          sx={{
-                            color: "white",
-                            position: "absolute",
-                            top: "50%",
-                            left: "50%",
-                            translate: "-50% -50%",
-                            padding: "5px 5px",
-                          }}
-                        >
-                          {Math.floor((movie.vote_average * 100) / 10)}%
-                        </Typography>
-                      </div>
-                      <span>User Score</span>
-                    </div>
+                      </Box>
+                    </Box>
+                    <Box className="w-full flex flex-col  justify-center">
+                      <Box
+                        className="flex flex-col gap-6
+                 text-white"
+                      >
+                        <Box className="flex flex-col gap-2">
+                          <Typography variant="h4" fontWeight={"bold"}>
+                            {movie.title}
+                            <span className="text-gray-200">(2013)</span>
+                          </Typography>
 
-                    <Tooltip sx={{ cursor: "pointer" }} title={"Add to List"}>
-                      <Box
-                        className="rounded-full p-4 flex"
-                        sx={{
-                          backgroundColor: "#032541",
-                        }}
-                      >
-                        <FormatListBulletedIcon fontSize="small" />
+                          <Box className="flex gap-2 ">
+                            {movie.genres.map((data) => {
+                              return <Typography>{data.name}</Typography>;
+                            })}
+                          </Box>
+                        </Box>
+
+                        <Stack
+                          direction="row"
+                          alignItems={"center"}
+                          spacing={2}
+                        >
+                          <div className="flex flex-wrap items-start gap-1">
+                            <div className="flex w-16 h-16 relative bg-black rounded-full">
+                              <CircularProgress
+                                variant="determinate"
+                                value={Math.floor(movie.vote_average * 10)}
+                                color="success"
+                                size={"4rem"}
+                                sx={{
+                                  position: "absolute",
+                                  top: "50%",
+                                  left: "50%",
+                                  translate: "-50% -50%",
+                                }}
+                              />
+                              <Typography
+                                sx={{
+                                  color: "white",
+                                  position: "absolute",
+                                  top: "50%",
+                                  left: "50%",
+                                  translate: "-50% -50%",
+                                  padding: "5px 5px",
+                                }}
+                              >
+                                {Math.floor((movie.vote_average * 100) / 10)}%
+                              </Typography>
+                            </div>
+                            <span className="hidden sm:block">User Score</span>
+                          </div>
+
+                          <Tooltip
+                            sx={{ cursor: "pointer" }}
+                            title={"Add to List"}
+                          >
+                            <Box
+                              className="rounded-full p-4 flex"
+                              sx={{
+                                backgroundColor: "#032541",
+                              }}
+                            >
+                              <FormatListBulletedIcon fontSize="small" />
+                            </Box>
+                          </Tooltip>
+                          <Tooltip
+                            sx={{ cursor: "pointer" }}
+                            title={"Mark as Favorite"}
+                          >
+                            <Box
+                              className="rounded-full p-4 flex"
+                              sx={{
+                                backgroundColor: "#032541",
+                              }}
+                            >
+                              <FavoriteIcon fontSize="small" />
+                            </Box>
+                          </Tooltip>
+                          <Tooltip
+                            sx={{ cursor: "pointer" }}
+                            title={"Add to your watchlist"}
+                          >
+                            <Box
+                              className="rounded-full p-4 flex"
+                              sx={{
+                                backgroundColor: "#032541",
+                              }}
+                            >
+                              <BookmarkIcon fontSize="small" />
+                            </Box>
+                          </Tooltip>
+                          <Tooltip
+                            sx={{ cursor: "pointer" }}
+                            title={"Rate it!"}
+                          >
+                            <Box
+                              className="rounded-full p-4 flex"
+                              sx={{
+                                backgroundColor: "#032541",
+                              }}
+                            >
+                              <StarBorderIcon fontSize="small" />
+                            </Box>
+                          </Tooltip>
+                          <Box className="flex items-center cursor-pointer hover:text-gray-400">
+                            <PlayArrowRoundedIcon />
+                            <Typography>Play Trailer</Typography>
+                          </Box>
+                        </Stack>
+
+                        <Box className="text-white ">
+                          <Typography variant="h6" fontWeight={"bold"}>
+                            Overview
+                          </Typography>
+                          <Typography variant="subtitle2">
+                            {movie.overview}
+                          </Typography>
+                        </Box>
                       </Box>
-                    </Tooltip>
-                    <Tooltip
-                      sx={{ cursor: "pointer" }}
-                      title={"Mark as Favorite"}
-                    >
-                      <Box
-                        className="rounded-full p-4 flex"
-                        sx={{
-                          backgroundColor: "#032541",
-                        }}
-                      >
-                        <FavoriteIcon fontSize="small" />
-                      </Box>
-                    </Tooltip>
-                    <Tooltip
-                      sx={{ cursor: "pointer" }}
-                      title={"Add to your watchlist"}
-                    >
-                      <Box
-                        className="rounded-full p-4 flex"
-                        sx={{
-                          backgroundColor: "#032541",
-                        }}
-                      >
-                        <BookmarkIcon fontSize="small" />
-                      </Box>
-                    </Tooltip>
-                    <Tooltip sx={{ cursor: "pointer" }} title={"Rate it!"}>
-                      <Box
-                        className="rounded-full p-4 flex"
-                        sx={{
-                          backgroundColor: "#032541",
-                        }}
-                      >
-                        <StarBorderIcon fontSize="small" />
-                      </Box>
-                    </Tooltip>
-                    <Box className="flex items-center cursor-pointer hover:text-gray-400">
-                      <PlayArrowRoundedIcon />{" "}
-                      <Typography>Play Trailer</Typography>
                     </Box>
                   </Stack>
+                );
+              })
+            : ""}
+        </Grid>
 
-                  <Box className="text-white">
-                    <Typography variant="h6" fontWeight={"bold"}>
-                      Overview
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      {movie.overview}
-                    </Typography>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-          );
-        }):""}
-      </Box>
-      <Box className="flex gap-4">
-        <MovieInfoBody id={id} type={type} /> <MovieInfoSidebar />
-      </Box>
+        <Grid container style={{ flexGrow: 1 }}>
+          <Grid item padding={1} xs={12} sm={9}>
+            <MovieInfoBody id={id} type={type} />
+          </Grid>
+          <Grid item xs={12} sm={3} padding={1}>
+            <MovieInfoSidebar />
+          </Grid>
+        </Grid>
+        <Grid item paddingLeft={1}>
+          <TrendingCarousel />
+        </Grid>
+        <Grid item paddingLeft={1}>
+          <FreeToWatch />
+        </Grid>
+      </Grid>
     </>
   );
 }

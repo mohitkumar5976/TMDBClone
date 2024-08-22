@@ -4,6 +4,7 @@ import "../../../index.css";
 import axios from "axios";
 import Tabs from "../../utility/Tabs";
 import CardsList from "../../utility/CardsList";
+import ResponsiveBox from "../../utility/ResponsiveBox";
 
 const tabData = [
   {
@@ -49,7 +50,7 @@ const Popular = () => {
 
   return (
     <>
-      <Box className=" pt-8">
+      <Box className="flex flex-col gap-x-2" sx={{ height: "27rem" }}>
         <Stack direction={{ xs: "column", sx: "row" }} padding={{ xs: 1 }}>
           <Typography variant="h6" fontWeight={"700"}>
             What's Popular
@@ -61,20 +62,7 @@ const Popular = () => {
             textColor={"text-white"}
           />
         </Stack>
-        <Box
-          id="carousel"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            width: { xs: "21.5rem", sm: "60rem" },
-            height: { xs: "auto" },
-            overflow: "auto",
-            paddingLeft: "0.2rem",
-            paddingBottom: "1.5rem",
-          }}
-        >
-          <CardsList dataList={dataList} />
-        </Box>
+        <ResponsiveBox dataList={dataList} />
       </Box>
     </>
   );

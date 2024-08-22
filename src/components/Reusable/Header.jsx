@@ -4,7 +4,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import {
   AppBar,
   Badge,
-  Button,
   MenuItem,
   MenuList,
   Paper,
@@ -16,7 +15,6 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
 import BasicMenu from "./BasicMenu";
 import MenuListFC from "../utility/MenuListFC";
@@ -25,6 +23,8 @@ import {
   peopleMenuList,
   tvMenuList,
 } from "../../utils/NavigationLinks";
+import MobileSidebar from "../utility/MobileSidebar";
+import SearchIconFC from "./SearchIconFC";
 
 const Header = () => {
   return (
@@ -33,13 +33,7 @@ const Header = () => {
       sx={{ backgroundColor: "#032541", height: "100%" }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
-        <MenuIcon
-          sx={{
-            cursor: "pointer",
-            fontSize: "1.8rem",
-            display: { xs: "block", sm: "none" },
-          }}
-        />
+        <MobileSidebar />
         <Stack
           direction="row"
           display={{ xs: "none", sm: "flex" }}
@@ -215,7 +209,7 @@ const Header = () => {
             <PersonIcon
               sx={{ fontSize: "1.8rem", display: { xs: "block", sm: "none" } }}
             />
-            <SearchIcon style={{ fontSize: "1.8rem" }} />
+            <SearchIconFC xs={"none"} sm={"block"} />
           </Stack>
         </Stack>
       </Toolbar>

@@ -3,9 +3,10 @@ import { Typography } from "@mui/material";
 import ImageComponent from "../utility/ImageComponent";
 
 function PersonCard({ profilePath, name, character }) {
+  console.log(profilePath);
   return (
     <>
-      <div className="flex flex-col gap-2 shadow-lg rounded-xl pb-2 h-[21rem]">
+      <div className="flex flex-col gap-2 shadow-lg h-full">
         <div
           style={{
             position: "relative",

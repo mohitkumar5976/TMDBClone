@@ -1,7 +1,11 @@
 import React from "react";
 
 const getPosterPath = (posterPath) => {
-  return `http://image.tmdb.org/t/p/w500/${posterPath}`;
+  if (posterPath) {
+    return `http://image.tmdb.org/t/p/w500/${posterPath}`;
+  } else {
+    return `/assets/images/person.png`;
+  }
 };
 
 export default function ImageComponent({ posterPath, rounded }) {

@@ -11,7 +11,7 @@ export default function Tabs({ data, setTab, bgColor, textColor }) {
 
   return (
     <>
-      <Box className="flex flex-wrap p-1 h-fit w-fit items-center border border-1 rounded-2xl">
+      <Box className="flex flex-wrap gap-1 p-1 h-fit w-fit items-center">
         {data && data.length !== 0
           ? data.map((item) => {
               return (
@@ -20,7 +20,7 @@ export default function Tabs({ data, setTab, bgColor, textColor }) {
                   onClick={() => getData(item.id, item.url)}
                   className={`${
                     index === item.id ? `${bgColor} ${textColor}` : null
-                  } cursor-pointer px-4 py-1 rounded-2xl`}
+                  } cursor-pointer px-4 py-1 rounded-2xl border border-1`}
                 >
                   <Typography fontSize={15}>{item.title}</Typography>
                 </Box>

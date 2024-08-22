@@ -4,6 +4,7 @@ import "../../../index.css";
 import axios from "axios";
 import CardsList from "../../utility/CardsList";
 import Tabs from "../../utility/Tabs";
+import ResponsiveBox from "../../utility/ResponsiveBox";
 
 const tabData = [
   {
@@ -39,10 +40,7 @@ const TrendingCarousel = () => {
 
   return (
     <>
-      <Box
-        className="flex flex-col gap-x-2 p-2"
-        sx={{ height: { xs: "30rem", sm: "30rem", lg: "40rem" } }}
-      >
+      <Box className="flex flex-col gap-x-2" sx={{ height: "25rem" }}>
         <Stack direction={{ xs: "column", sx: "row" }} padding={{ xs: 1 }}>
           <Typography variant="h6" fontWeight={"700"}>
             Trending
@@ -54,22 +52,7 @@ const TrendingCarousel = () => {
             textColor={"text-white"}
           />
         </Stack>
-        <Box
-          id="carousel"
-          sx={{
-            backgroundImage: `url("https://www.pngitem.com/pimgs/m/12-126268_sound-pixel-wave-transparent-sound-wave-png-png.png")`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            display: "flex",
-            alignItems: "center",
-            width: { xs: "21.5rem", sm: "60rem" },
-            height: { xs: "auto" },
-            overflow: "auto",
-            paddingBottom: "1.5rem",
-          }}
-        >
-          <CardsList dataList={dataList} />
-        </Box>
+        <ResponsiveBox dataList={dataList} />
       </Box>
     </>
   );

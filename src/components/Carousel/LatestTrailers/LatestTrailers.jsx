@@ -74,42 +74,39 @@ const LatestTrailers = () => {
             textColor={"text-white"}
           />
         </Stack>
-        <Box
-          id="carousel"
-          sx={{
+
+        <ul
+          className="pb-7"
+          style={{
             display: "flex",
-            alignItems: "center",
-            width: { xs: "21.5rem", sm: "60rem" },
-            height: { xs: "auto" },
-            overflow: "auto",
+            alignItems: "flex-start",
+            gap: 1,
+            padding: 0,
+            margin: 0,
+            listStyle: "none",
+            overflowX: "auto", // Enables horizontal scrolling
+            width: "100%", // Full width to ensure responsiveness
+            maxWidth: "100vw",
           }}
         >
-          <ul
-            className="flex items-center h-full gap-x-4 pb-7"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            {dataList && dataList.length !== 0 ? (
-              dataList.map((item) => {
-                return (
-                  <li key={item.id} className="h-fit">
-                    <VideoCard
-                      id={item.id}
-                      title={item.title ? item.title : item.name}
-                      posterPath={item.poster_path}
-                    />
-                  </li>
-                );
-              })
-            ) : (
-              <Box className="w-full flex justify-center items-center">
-                <CircularProgress size={"lg"} />
-              </Box>
-            )}
-          </ul>
-        </Box>
+          {dataList && dataList.length !== 0 ? (
+            dataList.map((item) => {
+              return (
+                <li key={item.id} className="h-fit">
+                  <VideoCard
+                    id={item.id}
+                    title={item.title ? item.title : item.name}
+                    posterPath={item.poster_path}
+                  />
+                </li>
+              );
+            })
+          ) : (
+            <Box className="w-full flex justify-center items-center">
+              <CircularProgress size={"lg"} />
+            </Box>
+          )}
+        </ul>
       </Box>
     </>
   );

@@ -17,18 +17,6 @@ function MovieCard({ title, releaseDate, posterPath, voteAverage }) {
           </Box>
 
           <div
-            className="flex justify-end "
-            style={{
-              position: "absolute",
-              top: "13px",
-              width: "150px",
-            }}
-          >
-            <div className="flex bg-gray-400 rounded-full">
-              <MoreHorizIcon fontSize="small" />
-            </div>
-          </div>
-          <div
             style={{
               position: "absolute",
               bottom: "-25px",

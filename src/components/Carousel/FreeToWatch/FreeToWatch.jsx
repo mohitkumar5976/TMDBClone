@@ -4,6 +4,7 @@ import "../../../index.css";
 import Tabs from "../../utility/Tabs";
 import CardsList from "../../utility/CardsList";
 import axios from "axios";
+import ResponsiveBox from "../../utility/ResponsiveBox";
 
 const tabData = [
   {
@@ -39,7 +40,7 @@ const FreeToWatch = () => {
 
   return (
     <>
-      <Box className=" pt-7">
+      <Box className="flex flex-col gap-x-2" sx={{ height: "27rem" }}>
         <Stack direction={{ xs: "column", sx: "row" }} padding={{ xs: 1 }}>
           <Typography variant="h6" fontWeight={"700"}>
             Free To Watch
@@ -51,20 +52,7 @@ const FreeToWatch = () => {
             textColor={"text-white"}
           />
         </Stack>
-        <Box
-          id="carousel"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            width: { xs: "21.5rem", sm: "60rem" },
-            height: { xs: "auto" },
-            overflow: "auto",
-            paddingLeft: "0.2rem",
-            paddingBottom:"1.5rem"
-          }}
-        >
-          <CardsList dataList={dataList} />
-        </Box>
+        <ResponsiveBox dataList={dataList} />
       </Box>
     </>
   );
