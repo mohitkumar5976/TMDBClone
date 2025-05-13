@@ -5,6 +5,8 @@ import axios from "axios";
 import Tabs from "../../utility/Tabs";
 import CardsList from "../../utility/CardsList";
 import ResponsiveBox from "../../utility/ResponsiveBox";
+import CarouselSection from "../../organisms/CarouselSection";
+import { getMovies } from "../../../api/tmdb/movies";
 
 const tabData = [
   {
@@ -32,16 +34,20 @@ const tabData = [
 const Popular = () => {
   const [dataList, setDataList] = useState([]);
   const [tab, setTab] = useState(tabData[0].url);
+  const [loading, setLoading] = useState(false); // 👈 loader state
+  
 
   const getData = async () => {
-    await axios
-      .get(
-        `https://api.themoviedb.org/3/${tab}?api_key=${process.env.REACT_APP_API_KEY}`
-      )
-      .then((res) => {
-        setDataList(res.data.results);
-      })
-      .catch((err) => console.log(err.message));
+    setLoading(true); // start loader
+    try {
+      const res = await getMovies(tab);
+      console.log("res", res);
+      setDataList(res);
+    } catch (err) {
+      console.log(err.message);
+    } finally {
+      setLoading(false); // stop loader
+    }
   };
 
   useEffect(() => {
@@ -62,7 +68,7 @@ const Popular = () => {
             textColor={"text-white"}
           />
         </Stack>
-        <ResponsiveBox dataList={dataList} />
+        <CarouselSection dataList={dataList} />
       </Box>
     </>
   );

@@ -4,6 +4,7 @@ import "../../../index.css";
 import VideoCard from "../../Cards/VideoCard";
 import axios from "axios";
 import Tabs from "../../utility/Tabs";
+import { getMovies } from "../../../api/tmdb/movies";
 
 const tabData = [
   {
@@ -38,10 +39,7 @@ const LatestTrailers = () => {
   const [tab, setTab] = useState(tabData[0].url);
 
   const getData = async () => {
-    await axios
-      .get(
-        `https://api.themoviedb.org/3/${tab}?api_key=${process.env.REACT_APP_API_KEY}`
-      )
+    getMovies(tab)
       .then((res) => {
         setDataList(res.data.results);
       })

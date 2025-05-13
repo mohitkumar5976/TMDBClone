@@ -4,16 +4,15 @@ import "../../../index.css";
 import PersonCard from "../../Cards/PersonCard";
 import BasicTabs from "./Tabs";
 import axios from "axios";
+import { getMovieCredits } from "../../../api/tmdb/movies";
 
 function MovieInfoBody({ id, type }) {
   const [personList, setPersonList] = useState([]);
 
   const getPerson = async () => {
-    await axios
-      .get(
-        `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&append_to_response=credits`
-      )
+    getMovieCredits(type, id)
       .then((res) => {
+        console.log(res.data.credits.cast);
         setPersonList(res.data.credits.cast);
       })
       .catch((err) => console.log(err.message));

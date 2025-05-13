@@ -35,7 +35,7 @@ const Banner = () => {
   return (
     <Box
       sx={{
-        height: { sm: "35rem", lg: "40rem" },
+        height: { sm: "35rem", lg: "calc(100vh - 3.6rem)" },
         overflow: "hidden", // Ensures no extra space below the image
         position: "relative",
       }}

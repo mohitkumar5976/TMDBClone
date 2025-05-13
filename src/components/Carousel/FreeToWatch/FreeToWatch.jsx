@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import "../../../index.css";
 import Tabs from "../../utility/Tabs";
-import CardsList from "../../utility/CardsList";
-import axios from "axios";
-import ResponsiveBox from "../../utility/ResponsiveBox";
+import CircularProgress from "@mui/material/CircularProgress";
+import { getMovies } from "../../../api/tmdb/movies";
+import CarouselSection from "../../organisms/CarouselSection";
 
 const tabData = [
   {
@@ -22,18 +22,19 @@ const tabData = [
 const FreeToWatch = () => {
   const [dataList, setDataList] = useState([]);
   const [tab, setTab] = useState(tabData[0].url);
+  const [loading, setLoading] = useState(false); // 👈 loader state
 
   const getData = async () => {
-    await axios
-      .get(
-        `https://api.themoviedb.org/3/${tab}?api_key=${process.env.REACT_APP_API_KEY}`
-      )
-      .then((res) => {
-        setDataList(res.data.results);
-      })
-      .catch((err) => console.log(err.message));
+    setLoading(true); // start loader
+    try {
+      const res = await getMovies(tab);
+      setDataList(res);
+    } catch (err) {
+      console.log(err.message);
+    } finally {
+      setLoading(false); // stop loader
+    }
   };
-
   useEffect(() => {
     getData();
   }, [tab]);
@@ -52,7 +53,21 @@ const FreeToWatch = () => {
             textColor={"text-white"}
           />
         </Stack>
-        <ResponsiveBox dataList={dataList} />
+
+        {loading ? (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%",
+            }}
+          >
+            <CircularProgress />
+          </Box>
+        ) : (
+          <CarouselSection dataList={dataList} />
+        )}
       </Box>
     </>
   );

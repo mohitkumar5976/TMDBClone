@@ -9,18 +9,17 @@ const StyledLink = styled(Link)(({ theme }) => ({
   color: "inherit",
 }));
 
-const ResponsiveBox = ({ dataList }) => {
+const CarouselSection = ({ dataList }) => {
   return (
     <Box
       sx={{
+        display: "flex",
         overflowX: "auto",
         overflowY: "hidden",
+        gap: 1, paddingX: 1,
         width: "100%",
-        maxWidth: "100%", // Prevent overflow
-        paddingY: 1,
+        maxWidth: "calc(100vw - 10px)",
         boxSizing: "border-box",
-        display: "flex",
-        gap: 1,
         scrollbarWidth: "thin", // Firefox
         "&::-webkit-scrollbar": {
           height: "6px",
@@ -40,7 +39,7 @@ const ResponsiveBox = ({ dataList }) => {
               xs: "120px",
               sm: "140px",
               md: "160px",
-            },
+            }
           }}
         >
           <StyledLink
@@ -62,4 +61,4 @@ const ResponsiveBox = ({ dataList }) => {
   );
 };
 
-export default ResponsiveBox;
+export default CarouselSection;

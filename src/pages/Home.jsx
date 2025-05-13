@@ -1,25 +1,27 @@
-import { useContext } from "react";
 import Banner from "../components/Home/Banner";
-import { Context } from "../Context";
-import SearchContainer from "../components/Search/SearchContainer";
 import TrendingCarousel from "../components/Carousel/TrendingCarousel/TrendingCarousel";
-import LatestTrailers from "../components/Carousel/LatestTrailers/LatestTrailers";
+import { Grid } from "@mui/material";
 import Popular from "../components/Carousel/WhatPopular/Popular";
 import FreeToWatch from "../components/Carousel/FreeToWatch/FreeToWatch";
-import { Grid } from "@mui/material";
+import SearchContainer from "../components/Search/SearchContainer";
+import { useContext } from "react";
+import { Context } from "../Context";
 
 function Home() {
   const { search } = useContext(Context);
-
   return (
     <>
-      <Banner />
+      <Grid container spacing={2} direction="column">
+        <Grid item>
+          <Banner />
+        </Grid>
 
-      {search && search.length !== 0 ? (
-        <SearchContainer search={search} />
-      ) : (
-        <>
-          <Grid container paddingLeft={0.5} spacing={1}>
+        {search?.length > 0 ? (
+          <Grid item>
+            <SearchContainer search={search} />
+          </Grid>
+        ) : (
+          <>
             <Grid item>
               <TrendingCarousel />
             </Grid>
@@ -29,9 +31,9 @@ function Home() {
             <Grid item>
               <FreeToWatch />
             </Grid>
-          </Grid>
-        </>
-      )}
+          </>
+        )}
+      </Grid>
     </>
   );
 }
