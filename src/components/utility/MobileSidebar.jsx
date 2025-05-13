@@ -32,7 +32,7 @@ export default function MobileSidebar() {
       <List>
         {moviesMenuList.map((text, index) => (
           <ListItem key={index} disablePadding>
-            <ListItemButton href={text.url}>
+            <ListItemButton>
               <ListItemText primary={text.title} />
             </ListItemButton>
           </ListItem>

@@ -27,7 +27,7 @@ const FreeToWatch = () => {
   const getData = async () => {
     setLoading(true); // start loader
     try {
-      const res = await getMovies(tab);
+      const res = await getMovies(tab);                 
       setDataList(res);
     } catch (err) {
       console.log(err.message);
